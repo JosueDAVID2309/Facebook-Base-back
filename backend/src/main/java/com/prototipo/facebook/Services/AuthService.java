@@ -4,8 +4,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.prototipo.facebook.DTO.LoginRequest;
-import com.prototipo.facebook.DTO.RegisterRequest;
+import com.prototipo.facebook.DTO.Requests.LoginRequest;
+import com.prototipo.facebook.DTO.Requests.RegisterRequest;
 import com.prototipo.facebook.Repositories.UserRepository;
 import com.prototipo.facebook.Models.User;
 
@@ -47,7 +47,4 @@ public class AuthService {
 
         return jwt.generateToken(user.getCorreo());
     }
-
-    
-
 }

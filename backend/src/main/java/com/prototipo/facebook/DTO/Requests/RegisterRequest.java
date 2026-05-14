@@ -1,6 +1,7 @@
-package com.prototipo.facebook.DTO;
+package com.prototipo.facebook.DTO.Requests;
 
 import java.time.LocalDate;
+
 
 import lombok.Data;
 import lombok.Getter;
@@ -24,5 +25,6 @@ public class RegisterRequest {
     private String correo;
 
     private String clave;
-}
 
+
+}

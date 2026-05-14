@@ -16,14 +16,5 @@ public class SecurityBeans {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
-        return http
-            .cors(Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests((auth) -> auth
-                .anyRequest().permitAll()
-            )
-            .build();
-    }
+    
 }

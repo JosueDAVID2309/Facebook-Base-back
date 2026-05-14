@@ -2,26 +2,24 @@ package com.prototipo.facebook.Services;
 
 import org.springframework.stereotype.Service;
 
-import com.prototipo.facebook.DTO.RegisterRequest;
+import com.prototipo.facebook.DTO.UserDTO;
+import com.prototipo.facebook.Mappers.UserMapper;
 import com.prototipo.facebook.Models.User;
 import com.prototipo.facebook.Repositories.UserRepository;
+
 @Service
 public class UserService {
+    private final UserMapper mapper;
     private final UserRepository repo;
 
-    public UserService(UserRepository repo){
+    public UserService(UserRepository repo, UserMapper mapper){
         this.repo = repo;
+        this.mapper = mapper;
     }
 
-    public User addUser(RegisterRequest request){
-        User user = new User();
-        user.setNombres(request.getNombres());
-        user.setApellidos(request.getApellidos());
-        user.setGenero(request.getGenero());
-        user.setF_nacimiento(request.getF_nacimiento());
-        user.setCorreo(request.getCorreo());
-        user.setClave(request.getClave());
+    public UserDTO getUserByCorreo (String correo){
+        User user = repo.findByCorreo(correo).orElseThrow();
 
-        return repo.save(user);
+        return mapper.toDTO(user);
     }
 }

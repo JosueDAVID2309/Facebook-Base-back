@@ -1,4 +1,4 @@
-package com.prototipo.facebook.DTO;
+package com.prototipo.facebook.DTO.Requests;
 
 import lombok.Data;
 import lombok.Getter;
