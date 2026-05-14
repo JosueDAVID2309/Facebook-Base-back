@@ -2,7 +2,6 @@ package com.prototipo.facebook.DTO;
 
 import java.time.LocalDate;
 
-import com.prototipo.facebook.Models.User;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
