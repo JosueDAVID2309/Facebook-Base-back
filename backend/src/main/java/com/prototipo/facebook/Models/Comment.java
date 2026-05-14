@@ -1,10 +1,8 @@
 package com.prototipo.facebook.Models;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,32 +15,25 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table(name = "comments")
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String imageUrl;
-
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String descripcion;
+    private String contenido;
 
-    @OneToMany(mappedBy = "post")
-    private List<Reaction> likes;
-
-    @OneToMany(mappedBy = "post")
-    private List<Comment> comments;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User author;
 
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

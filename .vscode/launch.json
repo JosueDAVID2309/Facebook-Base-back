@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FacebookApplication<facebook>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.prototipo.facebook.FacebookApplication",
+            "projectName": "facebook",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

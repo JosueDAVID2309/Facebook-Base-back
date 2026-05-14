@@ -1,13 +1,10 @@
 package com.prototipo.facebook.Models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     
     @Id
@@ -37,9 +34,32 @@ public class User {
     @Column(nullable = false)
     private LocalDate f_nacimiento;
 
+    @Column(nullable = true)
+    private String imageurl;
+
     @Column(nullable = false, unique = true)
     private String correo;
 
     @Column(nullable = false)
     private String clave;
+
+    @OneToMany(mappedBy = "author")
+    private List<Post> publicaciones = new ArrayList<>();;
+
+    @OneToMany(mappedBy = "user")
+    private List<Reaction> likes;
+
+    @OneToMany(mappedBy = "author")
+    private List<Comment> comments;
+
+    @ManyToMany
+    @JoinTable(
+        name = "followers",
+        joinColumns = @JoinColumn(name = "follower_id"),
+        inverseJoinColumns = @JoinColumn(name = "following_id")
+    )
+    private List<User> following = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "following")
+    private List<User> followers = new ArrayList<>();
 }

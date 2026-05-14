@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -44,10 +45,9 @@ public class AuthController {
     }
 
     @GetMapping("/test")
-    public String testing() {
+    public String getMethodName() {
         return "Hola mundo";
     }
-    
     
 
 }
