@@ -1,4 +1,4 @@
-package com.prototipo.facebook.DTO;
+package com.prototipo.facebook.DTO.Responses;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class UserDTO {
+public class UserResponse {
     private Long id;
     private String nombres;
     private String apellidos;

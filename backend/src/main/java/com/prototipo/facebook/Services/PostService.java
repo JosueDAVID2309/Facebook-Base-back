@@ -30,11 +30,8 @@ public class PostService {
     public void addPost(AddPostRequest request){
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
         String email = auth.getName();
-
         User author = userRepo.findByCorreo(email).orElseThrow();
-
         Post newPost = mapper.toEntity(request, author);
         repo.save(newPost);
     }

@@ -1,6 +1,5 @@
 package com.prototipo.facebook.DTO.Requests;
 
-import com.prototipo.facebook.Models.User;
 
 import lombok.Data;
 import lombok.Getter;

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -29,7 +28,7 @@ public class PostController {
     }
     
     @PostMapping("/posting")
-    public ApiResponse<?> posting(@RequestBody AddPostRequest post) {
+    public ApiResponse<AddPostRequest> posting(@RequestBody AddPostRequest post) {
         try{
             service.addPost(post);
             return new ApiResponse<AddPostRequest>(true, post, "Ejecucion satisfactoria");

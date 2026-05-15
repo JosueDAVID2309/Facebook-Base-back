@@ -10,7 +10,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.prototipo.facebook.Models.User;
 import com.prototipo.facebook.Repositories.UserRepository;
 import com.prototipo.facebook.Services.JwtService;
 
@@ -23,12 +22,10 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService service;
-    private final UserRepository repo;
     private final UserDetailsService userDetailsService;
 
     public AuthenticationFilter(JwtService service, UserRepository repo, UserDetailsService userDetailsService) {
         this.service = service;
-        this.repo = repo;
         this.userDetailsService = userDetailsService;
     }
 

@@ -6,20 +6,27 @@ import org.springframework.stereotype.Service;
 
 import com.prototipo.facebook.DTO.Requests.LoginRequest;
 import com.prototipo.facebook.DTO.Requests.RegisterRequest;
+import com.prototipo.facebook.Mappers.UserMapper;
 import com.prototipo.facebook.Repositories.UserRepository;
 import com.prototipo.facebook.Models.User;
 
 @Service
 public class AuthService {
     
+    private final UserMapper mapper;
     private final PasswordEncoder encoder;
     private final UserRepository repo;
     private final JwtService jwt;
 
-    public AuthService(PasswordEncoder encoder, UserRepository repo, JwtService jwt){
+    public AuthService(PasswordEncoder encoder,
+        UserRepository repo,
+        JwtService jwt,
+        UserMapper mapper
+        ){
         this.encoder = encoder;
         this.repo = repo;
         this.jwt = jwt;
+        this.mapper = mapper;
     }
 
     public String login(LoginRequest request){
@@ -34,15 +41,7 @@ public class AuthService {
         if(repo.existsByCorreo(request.getCorreo())){
             throw new RuntimeException();
         }
-
-        User user = new User();
-        user.setNombres(request.getNombres());
-        user.setApellidos(request.getApellidos());
-        user.setGenero(request.getGenero());
-        user.setF_nacimiento(request.getF_nacimiento());
-        user.setCorreo(request.getCorreo());
-        user.setClave(encoder.encode(request.getClave()));
-
+        User user = mapper.toEntity(request);
         repo.save(user);
 
         return jwt.generateToken(user.getCorreo());
